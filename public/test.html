@@ -7,7 +7,6 @@
   <link href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css' rel='stylesheet' type='text/css'>
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
 </head>
 <body>
 
@@ -17,59 +16,12 @@
   <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
 </p>
  
-<div id="slider-range"></div>
+<div class="slider"></div>
 
 <p id="demo">test</p>
  
 
-<script>
-  	var thisYear = (new Date()).getFullYear();
-
-  	document.getElementById("demo").innerHTML = thisYear;
-
-
-	$( document ).ready( function() {
-	  $( "#slider-range" ).slider({
-	      range: true,
-	      min: 1789,
-	      max: thisYear,
-	      values: [ 1789, thisYear ],
-	      slide: function( event, ui ) {
-	        $( "#amount" ).val( ui.values[ 0 ] + " - " + ui.values[ 1 ] );
-	      },
-	      change: function( event, ui ) {
-	      
-	      	
-	        var searchQuery = "https://api.case.law/v1/cases/?" + "decision_date_min=" + $( "#slider-range" ).slider( "values", 0 ) +"-01-01&decision_date_max=" + $( "#slider-range" ).slider( "values", 1 ) + "-12-31&callback=?";
-	                
-	        document.getElementById("demo").innerHTML = searchQuery;
-
-	                
-	        $.getJSON( searchQuery ).done(function( data ) {
-	        		document.getElementById("demo").innerHTML = "API called";
-	  					var items = [];
-	  					$.each( data , function( key, val ) {
-	    						items.push( "<li id='" + key + "'>" + val + "</li>" );
-	  					});
-	 	
-	  					$( "<ul/>", {
-	    						"class": "my-new-list",
-	    						html: items.join( "" )
-	  					}).appendTo( "body" );
-	            
-					});
-	        
-	      }
-	    });
-	    
-	    $( "#amount" ).val( $( "#slider-range" ).slider( "values", 0 ) +
-	      " - " + $( "#slider-range" ).slider( "values", 1 ) );
-	});
-
-
-
-
-  </script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
  
  
 </body>

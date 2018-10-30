@@ -6,3 +6,8 @@ body {
 a {
   color: #00B7FF;
 }
+
+.slider{ 
+  margin: 5% 0 0 15%; 
+  width: 75%;
+}

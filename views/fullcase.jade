@@ -1,0 +1,17 @@
+extends layout
+
+block content
+	h1#case-title
+	ul#case-info
+
+	div#case-text
+		div#front-matter
+		div#opinions
+
+	script(type='text/javascript').
+		caseId='#{id}';
+		fullText='#{fullText}';
+		authToken='#{authToken}';
+
+	script(src='/javascripts/fullcase.js')
+

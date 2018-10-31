@@ -1,13 +1,51 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+ 	border: 1px solid black;
+  	padding: 50px;
+  	padding-top: 0;
+  	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
-  color: #00B7FF;
+	color: #00B7FF;
 }
 
-.slider{ 
-  margin: 5% 0 0 15%; 
-  width: 75%;
+span {
+}
+
+#year-range {
+	border: none;
+}
+
+#slider-container {
+	position: relative;
+	height: 16px;
+}
+
+#slider-shrinker {
+	position: absolute;
+	width: 50%;
+	left: 0;
+}
+
+.slider { 
+}
+
+.navigation {
+	position: relative;
+	padding: 32px;
+	text-align: center;
+}
+
+.link-next {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin: 30px;
+}
+
+.link-prev {
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin: 30px;
 }

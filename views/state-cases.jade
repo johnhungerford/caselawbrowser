@@ -1,0 +1,38 @@
+extends layout
+
+block content
+	p(align)
+	h1 Caselaw Explorer
+	h2 State Level Jurisdictions
+
+	p
+		label(for='year-range') Year range of decision: 
+		input#year-range(type='text' readonly font-weight:bold)
+
+	div#slider-container
+		div#slider-shrinker
+			div.slider#year-slider
+
+	p
+		| Select State: 
+		select#state-select
+			option(value='none') All States
+
+	p
+		| Select Court: 
+		select#court-select
+			option(value='none') All Courts
+
+	p
+		| Search terms: 
+		input#search-terms(type='text')
+
+	div#results
+
+	div.key-box
+		| API Key: 
+		input.key-field(type='text')
+
+	script var key = '#{key}';
+
+	script(src='/javascripts/state-cases.js')

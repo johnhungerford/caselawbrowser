@@ -5,6 +5,10 @@ body {
   	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
+* {
+	box-sizing: border-box;
+}
+
 a {
 	color: #00B7FF;
 }
@@ -25,6 +29,27 @@ span {
 	position: absolute;
 	width: 50%;
 	left: 0;
+}
+
+.main-link-container::after {
+	content: "";
+    clear: both;
+    display: table;
+}
+
+.main-link {
+	font-size: 2em;
+	text-align: center;
+	float: left;
+  	width: 50%; /* three boxes (use 25% for four, and 50% for two, etc) */
+ 	padding: 20px; /* if you want space between the images */
+}
+
+.key-box {
+	position: absolute;
+	margin: 20px;
+	top: 0;
+	right: 0;
 }
 
 .slider { 

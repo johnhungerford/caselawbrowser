@@ -25,8 +25,8 @@ router.get('/:caseId', function(req, res, next) {
       json: true
   };
 
-  if( req.query.token ) {
-    options.headers = { 'Authorization': 'Token '+ req.query.token };
+  if( req.query.key ) {
+    options.headers = { 'Authorization': 'Token '+ req.query.key };
   }
 
   console.log(options);

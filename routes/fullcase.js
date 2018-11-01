@@ -9,19 +9,22 @@ router.get('/:caseId', function(req, res, next) {
     next();
   }
 
-  if ( !req.query.full_text || req.query.full_text == true) {
-    res.render('fullcase', { 
-      id: req.params.caseId,
-      fullText: true,
-      authToken: req.query.token
-    });
+  var renderParams = { id: req.params.caseId };
+
+  if( !req.query.full_text || req.query.fulltext == true ) {
+    renderParams.fullText = true;
   } else {
-    res.render('fullcase', { 
-      id: req.params.caseId,
-      fullText: false,
-      authToken: req.query.token
-    });
+    renderParams.fullText = false;
   }
+
+  if ( !req.query.key ) {
+    renderParams.key = '';
+  } else {
+    renderParams.key = req.query.key;
+  }
+
+  res.render('fullcase', renderParams );
+ 
 });
 
 module.exports = router;

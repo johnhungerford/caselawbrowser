@@ -8,10 +8,14 @@ block content
 		div#front-matter
 		div#opinions
 
+	div.key-box
+		| API Key: 
+		input.key-field(type='text')
+
 	script(type='text/javascript').
 		caseId='#{id}';
 		fullText='#{fullText}';
-		authToken='#{authToken}';
+		key='#{key}';
 
 	script(src='/javascripts/fullcase.js')
 

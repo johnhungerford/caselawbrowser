@@ -1,5 +1,25 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+	p(align)
+	h1 Caselaw Explorer
+	p.
+		A simple app to browse, search, and access a comprehensive database of American caselaw. This app is powered by the #[a(href='https://case.law/') Caselaw Access Project (CAP)] API developed by the #[a(href='https://lil.law.harvard.edu/') Library Innovation Lab] at Harvard University and #[a(href='https://home.ravellaw.com/') Ravel Law].
+	p.
+		Note that access is currently restricted to 500 cases per day for many jurisdictions. To access full cases, you will need a CAP API key, which you can get by #[a(href='https://case.law/user/register/') creating a free account with CAP]. Once you have registered, you can find your key by visiting your #[a(href='https://case.law/user/details') account page].
+	p.
+		Paste your API key in the box on the top right-hand corner of the page to get full access to cases found in the Caselaw Explorer.
+	p(style='display: none').
+		This front-end application was developed by the #[a(href='https://www.jackmillercenter.org/') Jack Miller Center] in support of the study and teaching of America's founding principles and history.
+
+	div.main-link-container
+		div.main-link#federal
+			a.federal-link(href='#') Federal<br>Cases
+		div.main-link#state
+			a.state-link(href='#') State<br>Cases
+
+	div.key-box
+		| API Key: 
+		input.key-field(type='text')
+
+	script(src='/javascripts/index.js')

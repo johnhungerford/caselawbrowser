@@ -2,11 +2,21 @@
 var resultsPage = 0;
 var pageSize = 100;
 
+var thisYear = (new Date()).getFullYear();
+
 if ( key != '' ) { $('.key-field').val(key) };
 
-$('#court-select').attr('disabled',true);
+$('option', $('#court-select')).remove();
+$($('#court-select')).append('<option value="none">All Federal Courts</option>');
 
-var thisYear = (new Date()).getFullYear();
+$.getJSON( "/courts", { "slug": 'us' }, function (data) {
+	console.log(data);
+	for(var i = 0; i < data.length; i++) {
+		var appendText = '<option value=' + data[i]["slug"] + '>' + data[i]["name"] + '</option>';
+		$($('#court-select')).append(appendText);
+	}
+	return;
+});
 
 $( ".slider" ).slider({
 	range: true,
@@ -22,54 +32,6 @@ $( ".slider" ).slider({
 });
 
 $( "#year-range" ).val( $( "#year-slider" ).slider( "values", 0 ) + " - " + $( "#year-slider" ).slider( "values", 1 ) );
-
-$('option', $('#state-select')).remove();
-$($('#state-select')).append('<option value="none">All States</option>');
-
-$.getJSON( "/states", function (data) {
-
-	console.log(data);
-	for(var i = 0; i < data.length; i++) {
-
-		if(data[i]["slug"] != "us") {
-			var appendText = '<option value=' + data[i]["slug"] + '>' + data[i]["name_long"] + '</option>';
-			$($('#state-select')).append(appendText);
-		} else {
-			console.log("United States!!!");
-		}
-		console.log(data[i]["slug"] + ": " + data[i]["name_long"]);
-	}
-});
-
-
-$('#state-select').change( function () {
-
-	if($('#state-select').val() == 'none') {
-		$('option', $('#court-select')).remove();
-		$($('#court-select')).append('<option value="none">All Courts</option>');
-		$('#court-select').attr('disabled',true);
-		return true;
-	}
-
-	$('#search-terms').attr('disabled',false);
-
-	$('option', $('#court-select')).remove();
-	var allCourtsText = '<option value="none">All ' + $('#state-select option:selected').text() + ' Courts</option>';
-	$($('#court-select')).append(allCourtsText);
-
-	$.getJSON( "/courts", { "slug": $('#state-select').val() }, function (data) {
-		console.log(data);
-		for(var i = 0; i < data.length; i++) {
-			var appendText = '<option value=' + data[i]["slug"] + '>' + data[i]["name"] + '</option>';
-			$($('#court-select')).append(appendText);
-		}
-	});
-
-	$('#court-select').attr('disabled',false);
-
-
-	callSearch();
-});
 
 $('#court-select').change( function() {
 	callSearch();
@@ -98,19 +60,16 @@ var callSearch = function () {
 	}
 
 	if( i == 0 ) { 
-		searchQuery += '?';
+		searchQuery += '?jurisdiction=us&';
 	} else {
-		searchQuery += '&';
+		searchQuery += '&jurisdiction=us&';
 	}
 
 	searchQuery += 'decision_date_min=' + $( "#year-slider" ).slider( "values", 0 ) 
 		+ '-01-01&decision_date_max=' + $( "#year-slider" ).slider( "values", 1 ) + '-12-31';
 
-	if ( $('#state-select').val() != 'none' ) {
-		searchQuery += '&jurisdiction=' + $('#state-select').val();
-		if ( $('#court-select').val() != 'none' ) {
-			searchQuery += '&court=' + $('#court-select').val();
-		}
+	if ( $('#court-select').val() != 'none' ) {
+		searchQuery += '&court=' + $('#court-select').val();
 	}
 
 	// Since this is a new search, set the page to zero

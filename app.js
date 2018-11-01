@@ -11,7 +11,9 @@ var getJurisdictions = require('./routes/states');
 var getCourts = require('./routes/courts');
 var getCases = require('./routes/cases');
 var getFullCase = require('./routes/getcase');
-var fullCase = require('./routes/fullcase')
+var fullCase = require('./routes/fullcase');
+var stateCases = require('./routes/state-cases');
+var federalCases = require('./routes/federal-cases');
 
 var app = express();
 
@@ -33,6 +35,8 @@ app.use('/courts', getCourts);
 app.use('/cases', getCases);
 app.use('/getcase', getFullCase);
 app.use('/fullcase', fullCase);
+app.use('/state-cases', stateCases);
+app.use('/federal-cases', federalCases);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

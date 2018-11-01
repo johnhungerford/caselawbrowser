@@ -100,9 +100,13 @@ var getPage = function (page) {
 		$('#results').append('<div id="all-results"></div>');
 		$('#results').append('<div class="navigation" id="nav-footer"></div>');
 
-		if(data.count) {
-			$('.navigation').append('<span class="page-info">Page ' + (resultsPage+1) + ' of ' + Math.ceil(data.count/pageSize) + 
-				' (' + data.count + ' cases)' + '</span>');
+		if( data.count != null ) {
+			if ( data.count != 0 ) {
+				$('.navigation').append('<span class="page-info">Page ' + (resultsPage+1) + ' of ' + Math.ceil(data.count/pageSize) + 
+					' (' + data.count + ' cases)' + '</span>');
+			} else {
+				$('.navigation').append('<span class="page-info">No results</span>');
+			}
 		} else {
 			$('.navigation').append('<span class="page-info">Too many results to count</span>');
 		}

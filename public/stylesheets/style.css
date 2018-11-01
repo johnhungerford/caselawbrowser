@@ -1,5 +1,10 @@
 body {
+ 	position: relative;
  	border: 1px solid black;
+ 	max-width: 700px;
+ 	margin: auto;
+ 	margin-top: 20px;
+ 	margin-bottom: 20px;
   	padding: 50px;
   	padding-top: 0;
   	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -9,8 +14,15 @@ body {
 	box-sizing: border-box;
 }
 
-a {
+a:link {
 	color: #00B7FF;
+}
+
+a:visited {
+	color: #A2C5D3;
+}
+
+a.:hover {
 }
 
 span {
@@ -43,6 +55,10 @@ span {
 	float: left;
   	width: 50%; /* three boxes (use 25% for four, and 50% for two, etc) */
  	padding: 20px; /* if you want space between the images */
+}
+
+.federal-link:hover, .state-link:hover {
+	 text-shadow: 2px 2px 2px #1a2226;
 }
 
 .key-box {

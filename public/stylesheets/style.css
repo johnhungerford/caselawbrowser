@@ -25,6 +25,11 @@ a:visited {
 a.:hover {
 }
 
+label {
+	display: block;
+	margin-bottom: 5px;
+}
+
 span {
 }
 
@@ -63,12 +68,31 @@ span {
 
 .key-box {
 	position: absolute;
-	margin: 20px;
+	margin-top: 20px;
+	margin-right: 50px;
 	top: 0;
 	right: 0;
 }
 
-.slider { 
+.fields-container {
+	margin-top: 1.5em;
+	margin-bottom: 1.5em;
+	content: "";
+    clear: both;
+    display: table;
+    width: 75%;
+}
+
+.field-horizontal {
+	float: left;
+    width: 40%;
+    margin: auto;
+}
+
+.center {
+	display: block;
+	margin: auto;
+	float: center;
 }
 
 .navigation {

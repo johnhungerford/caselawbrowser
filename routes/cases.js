@@ -24,7 +24,6 @@ router.get('/', function(req, res, next) {
       		console.log('Status:', capres);
     	} else {
       		// data is already parsed as JSON:
-      		console.log(capdata);
       		res.send(capdata);
     	}
 	});

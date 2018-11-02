@@ -6,7 +6,7 @@ if ( key != '' ) { $('.key-field').val(key) };
 
 $('#court-select').attr('disabled',true);
 
-var thisYear = (new Date()).getFullYear();
+/*var thisYear = (new Date()).getFullYear();
 
 $( ".slider" ).slider({
 	range: true,
@@ -21,7 +21,7 @@ $( ".slider" ).slider({
     }
 });
 
-$( "#year-range" ).val( $( "#year-slider" ).slider( "values", 0 ) + " - " + $( "#year-slider" ).slider( "values", 1 ) );
+$( "#year-range" ).val( $( "#year-slider" ).slider( "values", 0 ) + " - " + $( "#year-slider" ).slider( "values", 1 ) );*/
 
 $('option', $('#state-select')).remove();
 $($('#state-select')).append('<option value="none">All States</option>');
@@ -41,6 +41,13 @@ $.getJSON( "/states", function (data) {
 	}
 });
 
+$('#min-date').change( function() {
+	callSearch();
+});
+
+$('#max-date').change( function() {
+	callSearch();
+});
 
 $('#state-select').change( function () {
 
@@ -100,17 +107,23 @@ var callSearch = function () {
 		i++;
 	}
 
-	if( i == 0 ) { 
-		searchQuery += '?';
-	} else {
-		searchQuery += '&';
+	if( $( '#min-date' ).val() != '' ) {
+		if ( i == 0 ) { searchQuery += '?' } else { searchQuery += '&' };
+		searchQuery += 'decision_date_min=' + $( '#min-date' ).val();
+		i++;
 	}
 
-	searchQuery += 'decision_date_min=' + $( "#year-slider" ).slider( "values", 0 ) 
-		+ '-01-01&decision_date_max=' + $( "#year-slider" ).slider( "values", 1 ) + '-12-31';
+
+	if( $( '#max-date' ).val() != '' ) {
+		if ( i == 0 ) { searchQuery += '?' } else { searchQuery += '&' };
+		searchQuery += 'decision_date_max=' + $( "#max-date" ).val();
+		i++;
+	}
 
 	if ( $('#state-select').val() != 'none' ) {
-		searchQuery += '&jurisdiction=' + $('#state-select').val();
+		if ( i == 0 ) { searchQuery += '?' } else { searchQuery += '&' };
+		searchQuery += 'jurisdiction=' + $('#state-select').val();
+		i++;
 		if ( $('#court-select').val() != 'none' ) {
 			searchQuery += '&court=' + $('#court-select').val();
 		}

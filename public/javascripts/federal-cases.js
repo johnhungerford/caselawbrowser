@@ -18,7 +18,7 @@ $.getJSON( "/courts", { "slug": 'us' }, function (data) {
 	return;
 });
 
-$( ".slider" ).slider({
+/*$( ".slider" ).slider({
 	range: true,
 	min: 1789,
 	max: thisYear,
@@ -31,7 +31,15 @@ $( ".slider" ).slider({
     }
 });
 
-$( "#year-range" ).val( $( "#year-slider" ).slider( "values", 0 ) + " - " + $( "#year-slider" ).slider( "values", 1 ) );
+$( "#year-range" ).val( $( "#year-slider" ).slider( "values", 0 ) + " - " + $( "#year-slider" ).slider( "values", 1 ) );*/
+
+$('#min-date').change( function() {
+	callSearch();
+});
+
+$('#max-date').change( function() {
+	callSearch();
+});
 
 $('#court-select').change( function() {
 	callSearch();
@@ -59,18 +67,25 @@ var callSearch = function () {
 		i++;
 	}
 
-	if( i == 0 ) { 
-		searchQuery += '?jurisdiction=us&';
-	} else {
-		searchQuery += '&jurisdiction=us&';
+	if( $( '#min-date' ).val() != '' ) {
+		if ( i == 0 ) { searchQuery += '?' } else { searchQuery += '&' };
+		searchQuery += 'decision_date_min=' + $( '#min-date' ).val();
+		i++;
 	}
 
-	searchQuery += 'decision_date_min=' + $( "#year-slider" ).slider( "values", 0 ) 
-		+ '-01-01&decision_date_max=' + $( "#year-slider" ).slider( "values", 1 ) + '-12-31';
+
+	if( $( '#max-date' ).val() != '' ) {
+		if ( i == 0 ) { searchQuery += '?' } else { searchQuery += '&' };
+		searchQuery += 'decision_date_max=' + $( "#max-date" ).val();
+		i++;
+	}
 
 	if ( $('#court-select').val() != 'none' ) {
-		searchQuery += '&court=' + $('#court-select').val();
+		if ( i == 0 ) { searchQuery += '?' } else { searchQuery += '&' };
+		searchQuery += 'court=' + $('#court-select').val();
 	}
+
+	if ( i ==0 ) { searchQuery += '?jurisdiction=us' } else { searchQuery += '&jurisdiction=us' };
 
 	// Since this is a new search, set the page to zero
 	resultsPage = 0;

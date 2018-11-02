@@ -2,6 +2,8 @@
 var resultsPage = 0;
 var pageSize = 100;
 
+$('title').append(' - Federal');
+
 var thisYear = (new Date()).getFullYear();
 
 if ( key != '' ) { $('.key-field').val(key) };

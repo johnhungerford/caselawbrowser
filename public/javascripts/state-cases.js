@@ -2,6 +2,8 @@
 var resultsPage = 0;
 var pageSize = 100;
 
+$('title').append(' - State');
+
 if ( key != '' ) { $('.key-field').val(key) };
 
 $('#court-select').attr('disabled',true);
@@ -187,6 +189,8 @@ var getPage = function (page) {
 
 		// deal with results
 		for(var i = 0; i < data.results.length; i++) {
+			if( data.results[i].jurisdiction.slug == 'us' ) continue;
+
 			$('#all-results').append('<div class="case-result" id="res' + i + '"></div>');
 
 			var caseLinkUrl = '/fullcase/' + data.results[i].id; 

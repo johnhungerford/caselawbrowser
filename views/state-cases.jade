@@ -1,6 +1,7 @@
 extends layout
 
 block content
+
 	p(align)
 	h1 Caselaw Explorer
 	h2 State Level Jurisdictions
@@ -22,7 +23,7 @@ block content
 			input#max-date(type='date' min='1657-01-01' max='#{dateString}' )
 
 	p
-		| Select State: 
+		| Select State/Jurisdiction: 
 		select#state-select
 			option(value='none') All States
 
@@ -32,8 +33,11 @@ block content
 			option(value='none') All Courts
 
 	p
-		| Search terms: 
+		| Search Full Text: 
 		input#search-terms(type='text')
+
+	p.
+		The full text search feature is currently not working correctly with the other filters. The CAP API developers are currently working to fix this. To use the full text functionality, we recommend leaving all other fields empty or setting them to default.
 
 	div#results
 

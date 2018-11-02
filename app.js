@@ -6,7 +6,6 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var searchRouter = require('./routes/search');
 var getJurisdictions = require('./routes/states');
 var getCourts = require('./routes/courts');
 var getCases = require('./routes/cases');
@@ -29,7 +28,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/search', searchRouter);
 app.use('/states', getJurisdictions);
 app.use('/courts', getCourts);
 app.use('/cases', getCases);

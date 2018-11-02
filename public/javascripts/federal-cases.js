@@ -83,9 +83,12 @@ var callSearch = function () {
 	if ( $('#court-select').val() != 'none' ) {
 		if ( i == 0 ) { searchQuery += '?' } else { searchQuery += '&' };
 		searchQuery += 'court=' + $('#court-select').val();
+		i++
 	}
 
 	if ( i ==0 ) { searchQuery += '?jurisdiction=us' } else { searchQuery += '&jurisdiction=us' };
+
+	console.log(searchQuery);
 
 	// Since this is a new search, set the page to zero
 	resultsPage = 0;

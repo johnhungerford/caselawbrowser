@@ -6,7 +6,6 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
-    "capdocxgen": "file:../capdocxgen",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "docx": "^4.4.0",

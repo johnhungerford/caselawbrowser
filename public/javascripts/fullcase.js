@@ -12,6 +12,10 @@ var refresh = function () {
 
 	$.getJSON( getCaseUrl, { "full_text": true }, function (data) {
 
+		if(data.filename) {
+			$('#docx-box').append('<a href="/' + data.filename + '" id="docxlink">Download case as a word document</a>');
+		}
+
 		console.log("HELLO??");
 		
 		$('#case-title').append(data.name_abbreviation);
@@ -25,7 +29,7 @@ var refresh = function () {
 
 		if( data.casebody ) {
 
-			if( data.casebody.data ) {
+			/*if( data.casebody.data ) {
 
 				var casedata = data.casebody.data;
 				if (casedata.parties) { 
@@ -70,7 +74,7 @@ var refresh = function () {
 				$('#front-matter').append('<h2>You need a CAP API token to access the full case</h2>');
 				$('#front-matter').append('<p>You can obtain a token by registering with Harvard LIL. Registration is free. Each token can access up to 500 full cases per day.</p>');
 				$('#front-matter').append('<p><a href="https://case.law/user/register/">Click here to register with Harvard LIL</a></p>');
-			}
+			}*/
 
 		}
 

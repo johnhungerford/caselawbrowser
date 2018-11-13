@@ -1,5 +1,6 @@
 var stateUrl = '/state-cases';
 var federalUrl = '/federal-cases';
+var homeUrl = '/';
 
 console.log("hello?");
 
@@ -45,3 +46,18 @@ $('.state-link').click(function () {
 	window.location.href = newStateUrl;
 
 });
+
+$('.home-link').click(function () {
+
+	console.log("home clicked!");
+
+	var newHomeUrl = homeUrl;
+
+	if ( $('#key-field').val() ) {
+		newHomeUrl = newHomeUrl + '?key=' + $('#key-field').val();
+	}
+
+	window.location.href = newHomeUrl;
+
+});
+

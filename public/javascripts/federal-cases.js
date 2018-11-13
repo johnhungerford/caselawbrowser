@@ -18,21 +18,6 @@ $.getJSON( "/courts", { "slug": 'us' }, function (data) {
 	return;
 });
 
-/*$( ".slider" ).slider({
-	range: true,
-	min: 1789,
-	max: thisYear,
-	values: [ 1789, thisYear],
-	"slide": function( event, ui ) {
-        $( "#year-range" ).val( ui.values[ 0 ] + " - " + ui.values[ 1 ] );
-    },
-    "change": function( event, ui) {
-    	callSearch();
-    }
-});
-
-$( "#year-range" ).val( $( "#year-slider" ).slider( "values", 0 ) + " - " + $( "#year-slider" ).slider( "values", 1 ) );*/
-
 $('#min-date').change( function() {
 	callSearch();
 });
@@ -50,6 +35,10 @@ $('#search-terms').change( function() {
 });
 
 $('#key-field').change( function() {
+	callSearch();
+});
+
+$('#page-select').change( function() {
 	callSearch();
 });
 
@@ -85,7 +74,9 @@ var callSearch = function () {
 		i++
 	}
 
-	if ( i ==0 ) { searchQuery += '?jurisdiction=us' } else { searchQuery += '&jurisdiction=us' };
+	if ( i == 0 ) { searchQuery += '?jurisdiction=us' } else { searchQuery += '&jurisdiction=us' };
+
+	if ( $('#page-select').val() != 100 ) { searchQuery += '&page_size=' + $('#page-select').val(); }
 
 	console.log(searchQuery);
 

@@ -1,4 +1,6 @@
-
+label {
+	padding-right: .3em;
+}
 
 .navbar-color {
 	background-color: #5e6572;
@@ -28,8 +30,8 @@
 }
 
 .search-fields {
-    padding-top: 5px;
-    padding-bottom: 5px
+    margin-top: 15px;
+    margin-bottom: 15px
 }
 
 .case-result {

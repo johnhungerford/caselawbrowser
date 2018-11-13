@@ -11,22 +11,31 @@ block content
 				This front-end application was developed by the #[a(href='https://www.jackmillercenter.org/') Jack Miller Center] in support of the study and teaching of America's founding principles and history.
 
 	div.container
-		div.row.search-fields
-			div.col
-				label(for='min-date') Earliest Decision Date
+		div.row.align-items-center
+			div.col-sm-6.search-fields
+				label(for='min-date') Earliest Decision Date:
 				input#min-date(type='date' min='1657-01-01' max='#{dateString}')
-			div.col
-				label(for='max-date') Latest Decision Date
+			div.col-sm-6.search-fields
+				label(for='max-date') Latest Decision Date:
 				input#max-date(type='date' min='1657-01-01' max='#{dateString}' )
-		div.row.search-fields
-			div.col
-				label(for='court-select') Select Court
+		div.row.align-items-center
+			div.col.search-fields
+				label(for='court-select') Select Court:
 				select#court-select
 					option(value='none') All Federal Courts
-		div.row.search-fields
-			div.col
-				label(for='search-terms') Search Full Text
+		div.row.align-items-center
+			div.col-sm-6.search-fields
+				label(for='search-terms') Search Full Text:
 				input#search-terms(type='text')
+			div.col-sm-6.search-fields
+				label(for='page-select') Results per page: 
+				select#page-select
+					option 5
+					option(selected='selected') 10
+					option 25
+					option 50
+					option 75
+					option 100
 
 	div.container.results
 		div.row.cases-nav

@@ -86,7 +86,7 @@ var refresh = function () {
 
 refresh();
 
-$('.key-field').change(function() {
+$('#key-field').change(function() {
 	$('#case-title').empty();
 	$('#case-info').empty();
 	$('#front-matter').empty();

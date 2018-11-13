@@ -66,3 +66,9 @@
 .case-info {
 	margin-top: 20px;
 }
+
+.key-field-box {
+	width: 15em;
+	overflow: auto;
+	white-space: nowrap;
+}

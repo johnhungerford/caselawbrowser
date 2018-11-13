@@ -191,7 +191,7 @@ var getPage = function (page) {
 			$('#all-cases').append('<div class="case-result" id="res' + i + '"></div>');
 
 			var caseLinkUrl = '/fullcase/' + data.results[i].id; 
-			if(key) { caseLinkUrl += '/?key=' + key };
+			if( $('#key-field').val() ) { caseLinkUrl += '/?key=' + $('#key-field').val() };
 
 			$('#res' + i).append('<span class="case-result-title"><a target="_blank" href="' + caseLinkUrl + '">' 
 				+ data.results[i].name_abbreviation + '</a></span>');

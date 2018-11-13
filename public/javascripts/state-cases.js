@@ -142,36 +142,35 @@ var getPage = function (page) {
 
 	console.log( key );
 
+	
 	$.getJSON( "/cases", { "url": page }, function (data) {
 		
 		console.log(key);
 
-		$('#results').empty();
+		$('.cases-nav').empty();
+		$('.cases-list').empty();
 
 		// check error
 		if ( data.error ) {
-			$('#results').appendText( data.error );
+			$('.cases-nav').appendText( data.error );
 			return false;
+		} else {
+			$('.cases-nav').append('<div class="col link-prev"></div><div class="col page-info"></div><div class="col link-next"></div>');
 		}
-
-		// OTHERWISE: deal with page layout
-		$('#results').append('<div class="navigation" id="nav-header"></div>');
-		$('#results').append('<div id="all-results"></div>');
-		$('#results').append('<div class="navigation" id="nav-footer"></div>');
 
 		if( data.count != null ) {
 			if ( data.count != 0 ) {
-				$('.navigation').append('<span class="page-info">Page ' + (resultsPage+1) + ' of ' + Math.ceil(data.count/pageSize) + 
-					' (' + data.count + ' cases)' + '</span>');
+				$('.page-info').append('Page ' + (resultsPage+1) + ' of ' + Math.ceil(data.count/pageSize) + 
+					' (' + data.count + ' cases)');
 			} else {
-				$('.navigation').append('<span class="page-info">No results</span>');
+				$('.page-info').append('No results');
 			}
 		} else {
-			$('.navigation').append('<span class="page-info">Too many results to count</span>');
+			$('.page-info').append('Too many results to count');
 		}
 
 		if (data.previous) {
-			$('.navigation').prepend('<span class="link-prev"><a href="#">Previous</a></span>');
+			$('.link-prev').append('<a href="#">Previous</a>');
 			$('.link-prev').click( function () {
 				resultsPage--;
 				getPage(data.previous);
@@ -179,7 +178,7 @@ var getPage = function (page) {
 			});
 		}
 		if (data.next) {
-			$('.navigation').append('<span class="link-next"><a href="#">Next</a></span>');
+			$('.link-next').append('<a href="#">Next</a>');
 			$('.link-next').click( function () {
 				resultsPage++
 				getPage(data.next);
@@ -189,16 +188,14 @@ var getPage = function (page) {
 
 		// deal with results
 		for(var i = 0; i < data.results.length; i++) {
-			if( data.results[i].jurisdiction.slug == 'us' ) continue;
-
-			$('#all-results').append('<div class="case-result" id="res' + i + '"></div>');
+			$('#all-cases').append('<div class="case-result" id="res' + i + '"></div>');
 
 			var caseLinkUrl = '/fullcase/' + data.results[i].id; 
 			if(key) { caseLinkUrl += '/?key=' + key };
 
-			$('#res' + i).append('<h3><a target="_blank" href="' + caseLinkUrl + '">' 
-				+ data.results[i].name_abbreviation + '</a></h3>');
-			$('#res' + i).append('<ul>');
+			$('#res' + i).append('<span class="case-result-title"><a target="_blank" href="' + caseLinkUrl + '">' 
+				+ data.results[i].name_abbreviation + '</a></span>');
+			$('#res' + i).append('<ul class="case-result-data">');
 			$('#res' + i).append('<li>Citation: ' + data.results[i].citations[0].cite + '</li>');
 			$('#res' + i).append('<li>Decision Date: ' + data.results[i].decision_date + '</li>');
 			$('#res' + i).append('<li>Jurisdiction: ' + data.results[i].jurisdiction.name_long + '</li>');

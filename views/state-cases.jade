@@ -2,50 +2,48 @@ extends layout
 
 block content
 
-	p(align)
-	h1 Caselaw Explorer
-	h2 State Level Jurisdictions
+	div.jumbotron
+		div.container
+			h1 State Cases
+			p Browse case law from all state, tribal, and territorial jurisdictions going back to the 17th century.
+			p.
+				Paste your API key in the box on the top right-hand corner of the page to get full access to cases found in the Caselaw Explorer.
+			p(style='display: none').
+				This front-end application was developed by the #[a(href='https://www.jackmillercenter.org/') Jack Miller Center] in support of the study and teaching of America's founding principles and history.
 
-	- var date = new Date
-	- var yyyy = date.getFullYear();
-	- var mm = date.getMonth()+1;
-	- if ( mm < 10 ) { mm = '0' + mm };
-	- var dd = date.getDate();
-	- if ( dd < 10 ) { dd = '0' + dd };
-	- var dateString = yyyy + '-' + mm + '-' + dd;
+	div.container
+		div.row.search-fields
+			div.col
+				label(for='min-date') Earliest Decision Date
+				input#min-date(type='date' min='1657-01-01' max='#{dateString}')
+			div.col
+				label(for='max-date') Latest Decision Date
+				input#max-date(type='date' min='1657-01-01' max='#{dateString}' )
+		div.row.search-fields
+			div.col
+				label(for='state-select') Select Jurisdiction: 
+				select#state-select
+					option(value='none') All State Jurisdictions
+		div.row.search-fields
+			div.col
+				label(for='court-select') Select Court: 
+				select#court-select
+					option(value='none') All Federal Courts
+		div.row.search-fields
+			div.col
+				label(for='search-terms') Search Full Text: 
+				input#search-terms(type='text')
 
-	div.fields-container
-		div.field-horizontal
-			label(for='min-date') Earliest Decision Date
-			input#min-date(type='date' min='1657-01-01' max='#{dateString}')
-		div.field-horizontal
-			label(for='max-date') Latest Decision Date
-			input#max-date(type='date' min='1657-01-01' max='#{dateString}' )
+	div.container.results
+		div.row.cases-nav
+		div.row
+			div#all-cases.col.cases-list
+		div.row.cases-nav
 
-	p
-		| Select State/Jurisdiction: 
-		select#state-select
-			option(value='none') All States
-
-	p
-		| Select Court: 
-		select#court-select
-			option(value='none') All Courts
-
-	p
-		| Search Full Text: 
-		input#search-terms(type='text')
-
-	p.
-		The full text search feature is currently not working correctly with the other filters. The CAP API developers are currently working to fix this. To use the full text functionality, we recommend leaving all other fields empty or setting them to default.
-
-	div#results
+		hr
+		footer
+			p © John Hungerford 2018
 
 
-	div.key-box
-		| API Key: 
-		input.key-field(type='text')
-
-	script var key = '#{key}';
-
+	script(src='/javascripts/index.js')
 	script(src='/javascripts/state-cases.js')

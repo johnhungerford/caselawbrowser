@@ -1,0 +1,27 @@
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+.half-width {
+    width: 50%;
+}
+
+.half-width:hover {
+    border: 2px solid black;
+}
+
+.half-width: hover {
+}
+
+.half-width: hover {
+}
+
+.half-width: hover {
+}
+
+.half-width:hover {
+    border: 2px solid black;
+    cursor: pointer;
+}

@@ -1,22 +1,23 @@
 const getCaseUrlBase = '/getcase/' + caseId;
 
-if ( key != '' ) { $('.key-field').val(key) };
+if ( key != '' ) { $('#key-field').val(key) };
 
 var refresh = function () {
 
 	var getCaseUrl = getCaseUrlBase;
 
-	if ( $('.key-field').val() ) {
-		getCaseUrl = getCaseUrlBase + '?key=' + $('.key-field').val();
+	if ( $('#key-field').val() ) {
+		getCaseUrl = getCaseUrlBase + '?key=' + $('#key-field').val();
+		console.log(getCaseUrl);
 	}
 
 	$.getJSON( getCaseUrl, { "full_text": true }, function (data) {
 
-		if(data.filename) {
-			$('#docx-box').append('<a href="/' + data.filename + '" id="docxlink">Download case as a word document</a>');
+		if(data.casebody.data) {
+			$('#docx-box').append('<a href="/getcase/' + data.id + '/docx?key='+ $('#key-field').val()+'" id="docxlink">Download case as a word document</a>');
 		}
 
-		console.log("HELLO??");
+		console.log("HELLO?? " + data.filename );
 		
 		$('#case-title').append(data.name_abbreviation);
 		$('#case-info').append('<li>Citation: ' + data.citations[0].cite + '</li>');
@@ -29,9 +30,9 @@ var refresh = function () {
 
 		if( data.casebody ) {
 
-			/*if( data.casebody.data ) {
+			if( data.casebody.data ) {
 
-				var casedata = data.casebody.data;
+				/*var casedata = data.casebody.data;
 				if (casedata.parties) { 
 					var parties = casedata.parties.join(", ");
 					$('#case-info').append('<li>Parties: ' + parties + '</li>');
@@ -68,13 +69,13 @@ var refresh = function () {
 					}
 					$('#opinion' + i).append('<h3>' + opinions[i].author + ': ' + opinions[i].type + '</h2>');
 					$('#opinion' + i).append( opinionHTML );
-				}	
+				}*/	
 
 			} else {
 				$('#front-matter').append('<h2>You need a CAP API token to access the full case</h2>');
 				$('#front-matter').append('<p>You can obtain a token by registering with Harvard LIL. Registration is free. Each token can access up to 500 full cases per day.</p>');
 				$('#front-matter').append('<p><a href="https://case.law/user/register/">Click here to register with Harvard LIL</a></p>');
-			}*/
+			}
 
 		}
 

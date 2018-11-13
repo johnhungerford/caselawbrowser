@@ -1,27 +1,27 @@
 extends layout
 
 block content
-	p(align)
-	h1 Caselaw Explorer
-	p.
-		A simple app to browse, search, and access a comprehensive database of American caselaw. This app is powered by the #[a(href='https://case.law/') Caselaw Access Project (CAP)] API developed by the #[a(href='https://lil.law.harvard.edu/') Library Innovation Lab] at Harvard University and #[a(href='https://home.ravellaw.com/') Ravel Law].
-	p.
-		Note that access is currently restricted to 500 cases per day for many jurisdictions. To access full cases, you will need a CAP API key, which you can get by #[a(href='https://case.law/user/register/') creating a free account with CAP]. Once you have registered, you can find your key by visiting your #[a(href='https://case.law/user/details') account page].
-	p.
-		Paste your API key in the box on the top right-hand corner of the page to get full access to cases found in the Caselaw Explorer.
-	p(style='display: none').
-		This front-end application was developed by the #[a(href='https://www.jackmillercenter.org/') Jack Miller Center] in support of the study and teaching of America's founding principles and history.
-
-	div.main-link-container
-		div.main-link#federal
-			a.federal-link(href='#') Federal<br>Cases
-		div.main-link#state
-			a.state-link(href='#') State<br>Cases
-
-	p(style='margin-top: 50px; text-align: center') By John Hungerford
-
-	div.key-box
-		| API Key: 
-		input.key-field(type='text')
+	div.jumbotron
+		div.container
+			h1 American Case Law
+			p.
+				A simple app to browse, search, and access a comprehensive database of American caselaw. This app is powered by the #[a(href='https://case.law/') Caselaw Access Project (CAP)] API developed by the #[a(href='https://lil.law.harvard.edu/') Library Innovation Lab] at Harvard University and #[a(href='https://home.ravellaw.com/') Ravel Law].
+			p.
+				Note that access is currently restricted to 500 cases per day for many jurisdictions. To access full cases, you will need a CAP API key, which you can get by #[a(href='https://case.law/user/register/') creating a free account with CAP]. Once you have registered, you can find your key by visiting your #[a(href='https://case.law/user/details') account page].
+			p.
+				Paste your API key in the box on the top right-hand corner of the page to get full access to cases found in the Caselaw Explorer.
+			p(style='display: none').
+				This front-end application was developed by the #[a(href='https://www.jackmillercenter.org/') Jack Miller Center] in support of the study and teaching of America's founding principles and history.
+	div.container
+		div.row
+			div.col.link-div.federal-link
+				h2 Federal Cases
+				p Click here to search through federal-level case law. Includes Supreme Court cases as well as cases from all other federal courts. Search by decision date, court, and full-text search terms.
+			div.col.link-div.state-link
+				h2 State Cases
+				p Click here to search through all non-federal case law. This includes all state, tribal, and territorial jurisdictions, past and present, going back to the 17th century. Search by jurisdiction, court, decision date, and full-text search terms.
+		hr
+		footer
+			p © John Hungerford 2018
 
 	script(src='/javascripts/index.js')

@@ -1,23 +1,24 @@
 extends layout
 
 block content
-	h1#case-title
-	ul#case-info
+	div.jumbotron
+		div.container
+			h1#case-title
+			div.row.case-info
+				div.col
+					ul#case-info
+				div.col
+					div#docx-box
 
-	div#case-text
+	div#case-text.container
 		div#front-matter
 		div#opinions
-
-	div.key-box
-		| API Key: 
-		input.key-field(type='text')
-
-	div#docx-box
 
 	script(type='text/javascript').
 		caseId='#{id}';
 		fullText='#{fullText}';
 		key='#{key}';
 
+	script(src='/javascripts/index.js')
 	script(src='/javascripts/fullcase.js')
 

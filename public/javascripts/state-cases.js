@@ -91,7 +91,7 @@ $('#search-terms').change( function() {
 	callSearch();
 });
 
-$('.key-field').change( function () {
+$('#key-field').change( function () {
 	if($('.key-field').val()) { key = $('.key-field').val() };
 	callSearch();
 });

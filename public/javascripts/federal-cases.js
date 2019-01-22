@@ -110,7 +110,7 @@ var getPage = function (page) {
 
 		if( data.count != null ) {
 			if ( data.count != 0 ) {
-				$('.page-info').append('Page ' + (resultsPage+1) + ' of ' + Math.ceil(data.count/pageSize) + 
+				$('.page-info').append('Page ' + (resultsPage+1) + ' of ' + Math.ceil(data.count/$('#page-select').val()) + 
 					' (' + data.count + ' cases)');
 			} else {
 				$('.page-info').append('No results');

@@ -96,6 +96,10 @@ $('#key-field').change( function () {
 	callSearch();
 });
 
+$('#page-select').change( function() {
+	callSearch();
+});
+
 var callSearch = function () {
 
 	if( $('.page-info') ) { $('.page-info').empty() };
@@ -131,6 +135,13 @@ var callSearch = function () {
 		}
 	}
 
+	if ( $('#page-select').val() != 100 ) { 
+		if ( i == 0 ) { searchQuery += '?' } else { searchQuery += '&' };
+		searchQuery += '&page_size=' + $('#page-select').val(); 
+		i++;
+	}
+
+
 	// Since this is a new search, set the page to zero
 	resultsPage = 0;
 
@@ -160,7 +171,7 @@ var getPage = function (page) {
 
 		if( data.count != null ) {
 			if ( data.count != 0 ) {
-				$('.page-info').append('Page ' + (resultsPage+1) + ' of ' + Math.ceil(data.count/pageSize) + 
+				$('.page-info').append('Page ' + (resultsPage+1) + ' of ' + Math.ceil(data.count/$('#page-select').val()) + 
 					' (' + data.count + ' cases)');
 			} else {
 				$('.page-info').append('No results');

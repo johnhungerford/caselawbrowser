@@ -1,1 +1,1 @@
-<a target="blank" href="http://caselawbrowser.herokuapp.com/">Find the app on Heroku</a>
+<a target="_blank" href="http://caselawbrowser.herokuapp.com/">Find the app on Heroku</a>

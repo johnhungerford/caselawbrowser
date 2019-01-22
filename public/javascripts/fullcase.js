@@ -11,7 +11,7 @@ var refresh = function () {
 		console.log(getCaseUrl);
 	}
 
-	$.getJSON( getCaseUrl, { "full_text": true }, function (data) {
+	$.getJSON( getCaseUrl, { "full_text": true, "body_format": "html" }, function (data) {
 
 		if(data.casebody.data) {
 			$('#docx-box').append('<a href="/getcase/' + data.id + '/docx?key='+ $('#key-field').val()+'" id="docxlink">Download case as a word document</a>');
@@ -31,6 +31,8 @@ var refresh = function () {
 		if( data.casebody ) {
 
 			if( data.casebody.data ) {
+
+				$('#case-text').append(data.casebody.data);
 
 				/*var casedata = data.casebody.data;
 				if (casedata.parties) { 

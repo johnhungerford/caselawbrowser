@@ -19,6 +19,9 @@ router.get('/:caseId', function(req, res, next) {
 
   if( req.query.full_text == "true" ) {
     caseUrl += '&full_case=true';
+    if( req.query.body_format == 'html') {
+      caseUrl += '&body_format=html';
+    }
   }
 
   console.log("Finding case at following URL: " + caseUrl);

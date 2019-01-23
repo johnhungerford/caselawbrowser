@@ -30,6 +30,14 @@ $('#court-select').change( function() {
 	callSearch();
 });
 
+$('#search-name').change( function() {
+	callSearch();
+});
+
+$('#search-cite').change( function() {
+	callSearch();
+});
+
 $('#search-terms').change( function() {
 	callSearch();
 });
@@ -52,6 +60,18 @@ var callSearch = function () {
 
 	if( $('#search-terms').val() ) {
 		searchQuery += '?search=' + $('#search-terms').val();
+		i++;
+	}
+
+	if( $( '#search-cite' ).val() != '' ) {
+		if ( i == 0 ) { searchQuery += '?' } else { searchQuery += '&' };
+		searchQuery += 'cite=' + $( '#search-cite' ).val();
+		i++;
+	}
+
+	if( $( '#search-name' ).val() != '' ) {
+		if ( i == 0 ) { searchQuery += '?' } else { searchQuery += '&' };
+		searchQuery += 'name_abbreviation=' + $( '#search-name' ).val();
 		i++;
 	}
 

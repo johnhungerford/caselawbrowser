@@ -9,6 +9,13 @@ var thisYear = (new Date()).getFullYear();
 $('option', $('#court-select')).remove();
 $('#court-select').append('<option value="none">All Federal Courts</option>');
 
+$(document).off('keydown').keydown((e)=>{
+	if(e.which === 13) {
+		e.preventDefault();
+		callSearch();
+	}
+});
+
 $.getJSON( "/courts", { "slug": 'us' }, function (data) {
 	console.log(data);
 	for(var i = 0; i < data.length; i++) {
@@ -16,7 +23,9 @@ $.getJSON( "/courts", { "slug": 'us' }, function (data) {
 		$('#court-select').append(appendText);
 	}
 
-	$('#court-select option[value="us"]').attr("selected",true);
+	$('#scotus').click(()=>{
+		$('#court-select option[value="us"]').attr("selected",true);
+	});
 	return;
 });
 

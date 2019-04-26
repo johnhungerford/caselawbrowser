@@ -7,14 +7,16 @@ $('title').append(' - Federal');
 var thisYear = (new Date()).getFullYear();
 
 $('option', $('#court-select')).remove();
-$($('#court-select')).append('<option value="none">All Federal Courts</option>');
+$('#court-select').append('<option value="none">All Federal Courts</option>');
 
 $.getJSON( "/courts", { "slug": 'us' }, function (data) {
 	console.log(data);
 	for(var i = 0; i < data.length; i++) {
 		var appendText = '<option value=' + data[i]["slug"] + '>' + data[i]["name"] + '</option>';
-		$($('#court-select')).append(appendText);
+		$('#court-select').append(appendText);
 	}
+
+	$('#court-select option[value="us"]').attr("selected",true);
 	return;
 });
 
